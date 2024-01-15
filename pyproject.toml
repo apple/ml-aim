@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aim"
+version = "1.0.0"
+description = "Scalable Pre-training of Large Autoregressive Vision Models"
+requires-python = ">=3.8"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+authors = [
+    {name = "Apple"}
+]
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "numpy",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.isort]
+profile = "black"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "NUMERIC", "FIRSTPARTY", "LOCALFOLDER"]
+known_numeric = ["torch", "torchvision", "numpy", "jax", "flax", "mlx"]
