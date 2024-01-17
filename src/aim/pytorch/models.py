@@ -3,14 +3,16 @@
 # --------------------------------------------------
 # References:
 # https://github.com/facebookresearch/ImageBind
-from typing import Any, Callable, List, Optional, Tuple, Union
+from typing import Any, Callable, List, Optional, Tuple, Union, Dict
 
 import torch
 from torch import nn
 
-from .. import mixins
-from . import layers
+import layers
 
+from huggingface_hub import PyTorchModelHubMixin
+
+ArrayLike = Any
 __all__ = ["Transformer", "AIM", "aim_600M", "aim_1B", "aim_3B", "aim_7B"]
 
 
@@ -82,7 +84,91 @@ class Transformer(nn.Module):
         return tokens, features
 
 
-class AIM(mixins.AIMMixin, nn.Module):
+class AttrDict(dict):
+    def __init__(self, *args, **kwargs):
+        super(AttrDict, self).__init__(*args, **kwargs)
+        self.__dict__ = self    
+
+
+class AIMForImageClassification(nn.Module, PyTorchModelHubMixin):
+    def __init__(self, config: dict):
+        super().__init__()
+
+        # make sure we can read attributes from the config
+        config = AttrDict(config)
+
+        norm_layer = layers.LayerNorm
+
+        # preprocessor
+        patchifier = layers.PatchEmbed(
+            img_size=config.image_size,
+            patch_size=config.patch_size,
+            in_chans=config.num_channels,
+            embed_dim=config.embed_dim,
+            norm_layer=norm_layer,
+        )
+        self.preprocessor = layers.ViTPreprocessor(
+            patchifier, drop_patches=False, cls_token=False
+        )
+
+        # trunk
+        probe_layers = config.probe_layers
+        if isinstance(probe_layers, int):
+            probe_layers = tuple(range(config.num_blocks - probe_layers, config.num_blocks))
+        assert all(layer >= 0 for layer in probe_layers), probe_layers
+
+        attn_target = _get_attention_target(dim=config.embed_dim, num_heads=config.num_heads)
+        post_transform_layer = layers.AverageLayers(probe_layers, reduce=False)
+        self.trunk = Transformer(
+            attn_target,
+            embed_dim=config.embed_dim,
+            num_blocks=config.num_blocks,
+            norm_layer=norm_layer,
+            post_transformer_layer=post_transform_layer,
+        )
+        
+        # head
+        self.head = layers.AttentionPoolingClassifier(
+            dim=config.embed_dim,
+            out_features=config.num_classes,
+            num_heads=config.num_heads,
+            qkv_bias=False,
+            qk_scale=None,
+            num_queries=1,
+        )
+
+    def forward(
+        self,
+        x: ArrayLike,
+        mask: Optional[ArrayLike] = None,
+        max_block_id: Optional[int] = -1,
+    ) -> Tuple[ArrayLike, Dict[str, ArrayLike]]:
+        output = {}
+
+        x = self.preprocessor(x, mask=mask)
+        output["preprocessor_output"] = x
+
+        x, feats = self.trunk(x, mask=mask, max_block_id=max_block_id)
+        output["trunk_output"] = feats
+
+        x = self.head(x, mask=mask)
+
+        return x, output
+
+    def extract_features(
+        self,
+        x: ArrayLike,
+        mask: Optional[ArrayLike] = None,
+        max_block_id: Optional[int] = -1,
+    ) -> List[ArrayLike]:
+        x = self.preprocessor(x, mask=mask)
+        feats = self.trunk(
+            x, mask=mask, max_block_id=max_block_id, return_features=True
+        )
+        return feats
+
+
+class AIM(nn.Module):
     def __init__(
         self,
         preprocessor: nn.Module,
