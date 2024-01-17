@@ -3,9 +3,9 @@
 *Alaaeldin El-Nouby, Michal Klein, Shuangfei Zhai, Miguel Angel Bautista, Alexander Toshev, Vaishaal Shankar,
 Joshua M Susskind, and Armand Joulin*
 
-[[`Paper`]()]  [[`BibTex`](#citation)]
+[[`Paper`](https://arxiv.org/abs/2401.08541)]  [[`BibTex`](#citation)]
 
-This software project accompanies the research paper, [Scalable Pre-training of Large Autoregressive Image Models](TODO).
+This software project accompanies the research paper, [Scalable Pre-training of Large Autoregressive Image Models](https://arxiv.org/abs/2401.08541).
 
 We introduce **AIM** a collection of vision models pre-trained with an autoregressive generative objective.
 We show that autoregressive pre-training of image features exhibits similar scaling properties to their
@@ -203,6 +203,12 @@ By default, we probe the last 6 layers. To change this, simply pass `--probe-lay
 ## Citation
 If you find our work useful, please consider citing us as:
 ```
-@article{TODO,
+@misc{elnouby2024scalable,
+      title={Scalable Pre-training of Large Autoregressive Image Models}, 
+      author={Alaaeldin El-Nouby and Michal Klein and Shuangfei Zhai and Miguel Angel Bautista and Alexander Toshev and Vaishaal Shankar and Joshua M Susskind and Armand Joulin},
+      year={2024},
+      eprint={2401.08541},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
