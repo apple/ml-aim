@@ -88,10 +88,10 @@ The pre-trained models can be accessed via [PyTorch Hub](https://pytorch.org/hub
 ```python
 import torch
 
-aim_600m = torch.hub.load("apple/ml-aim", "aim-600M")
-aim_1b   = torch.hub.load("apple/ml-aim", "aim-1B")
-aim_3b   = torch.hub.load("apple/ml-aim", "aim-3B")
-aim_7b   = torch.hub.load("apple/ml-aim", "aim-7B")
+aim_600m = torch.hub.load("apple/ml-aim", "aim_600M")
+aim_1b   = torch.hub.load("apple/ml-aim", "aim_1B")
+aim_3b   = torch.hub.load("apple/ml-aim", "aim_3B")
+aim_7b   = torch.hub.load("apple/ml-aim", "aim_7B")
 ```
 
 ### Pre-trained backbones
@@ -204,7 +204,7 @@ By default, we probe the last 6 layers. To change this, simply pass `--probe-lay
 If you find our work useful, please consider citing us as:
 ```
 @misc{elnouby2024scalable,
-      title={Scalable Pre-training of Large Autoregressive Image Models}, 
+      title={Scalable Pre-training of Large Autoregressive Image Models},
       author={Alaaeldin El-Nouby and Michal Klein and Shuangfei Zhai and Miguel Angel Bautista and Alexander Toshev and Vaishaal Shankar and Joshua M Susskind and Armand Joulin},
       year={2024},
       eprint={2401.08541},
