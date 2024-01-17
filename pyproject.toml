@@ -23,10 +23,6 @@ test = [
     "numpy",
 ]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-include-package-data = true
-
 [tool.isort]
 profile = "black"
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "NUMERIC", "FIRSTPARTY", "LOCALFOLDER"]
