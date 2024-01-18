@@ -81,7 +81,6 @@ inp = jnp.array(inp)
 ```
 </details>
 
-
 ## Pre-trained checkpoints
 
 The pre-trained models can be accessed via [PyTorch Hub](https://pytorch.org/hub/) as:
@@ -102,7 +101,6 @@ aim_1b   = AIMForImageClassification.from_pretrained("apple/aim-1B")
 aim_3b   = AIMForImageClassification.from_pretrained("apple/aim-3B")
 aim_7b   = AIMForImageClassification.from_pretrained("apple/aim-7B")
 ```
-
 
 ### Pre-trained backbones
 
