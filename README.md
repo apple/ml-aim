@@ -93,6 +93,16 @@ aim_1b   = torch.hub.load("apple/ml-aim", "aim_1B")
 aim_3b   = torch.hub.load("apple/ml-aim", "aim_3B")
 aim_7b   = torch.hub.load("apple/ml-aim", "aim_7B")
 ```
+or via [HuggingFace Hub](https://huggingface.co/docs/hub/) as:
+```python
+from aim.torch.models import AIMForImageClassification
+
+aim_600m = AIMForImageClassification.from_pretrained("apple/aim-600M")
+aim_1b   = AIMForImageClassification.from_pretrained("apple/aim-1B")
+aim_3b   = AIMForImageClassification.from_pretrained("apple/aim-3B")
+aim_7b   = AIMForImageClassification.from_pretrained("apple/aim-7B")
+```
+
 
 ### Pre-trained backbones
 
