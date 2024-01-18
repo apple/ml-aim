@@ -6,7 +6,7 @@ from torch import nn
 
 from aim import utils
 
-dependencies = ["torch"]
+dependencies = ["torch", "huggingface_hub"]
 
 
 def aim_600M(*args: Any, **kwargs: Any) -> nn.Module:

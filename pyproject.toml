@@ -15,6 +15,7 @@ authors = [
 dependencies = [
     "torch>=2.0.0",
     "torchvision",
+    "huggingface_hub",
 ]
 
 [project.optional-dependencies]
