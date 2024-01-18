@@ -22,9 +22,11 @@ model = AIMForImageClassification(config)
 aim_600m = torch.hub.load("apple/ml-aim", "aim_600M")
 model.load_state_dict(aim_600m.state_dict())
 
-# push to hub
+# save locally
 # model.save_pretrained(".", config=config)
+
+# push to hub
 # model.push_to_hub("nielsr/aim-600M", config=config)
 
-# reload
+# reload from hub
 reload_model = AIMForImageClassification.from_pretrained("nielsr/aim-600m")
