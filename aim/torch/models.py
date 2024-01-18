@@ -3,7 +3,9 @@
 # --------------------------------------------------
 # References:
 # https://github.com/facebookresearch/ImageBind
-from typing import Any, Callable, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+
+from huggingface_hub import PyTorchModelHubMixin
 
 import torch
 from torch import nn
@@ -11,7 +13,15 @@ from torch import nn
 from .. import mixins
 from . import layers
 
-__all__ = ["Transformer", "AIM", "aim_600M", "aim_1B", "aim_3B", "aim_7B"]
+__all__ = [
+    "Transformer",
+    "AIM",
+    "AIMForImageClassification",
+    "aim_600M",
+    "aim_1B",
+    "aim_3B",
+    "aim_7B",
+]
 
 
 class Transformer(nn.Module):
@@ -95,6 +105,12 @@ class AIM(mixins.AIMMixin, nn.Module):
         self.head = head
 
 
+class AIMForImageClassification(mixins.AIMMixin, PyTorchModelHubMixin, nn.Module):
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__()
+        self.preprocessor, self.trunk, self.head = _aim(**config)
+
+
 def _get_attention_target(dim: int, num_heads: int) -> Callable[[bool], nn.Module]:
     def callback(use_bias: bool) -> nn.Module:
         return layers.Attention(dim=dim, num_heads=num_heads, use_bias=use_bias)
@@ -112,7 +128,7 @@ def _aim(
     probe_layers: Union[int, Tuple[int, ...]] = 6,
     num_classes: int = 1000,
     **kwargs: Any,
-) -> AIM:
+) -> Tuple[nn.Module, nn.Module, nn.Module]:
     # common
     norm_layer = layers.LayerNorm
 
@@ -154,52 +170,60 @@ def _aim(
         num_queries=1,
     )
 
-    return AIM(preprocessor, trunk, head)
+    return preprocessor, trunk, head
 
 
 def aim_600M(img_size: Union[int, Tuple[int, int]] = 224, **kwargs: Any) -> AIM:
-    return _aim(
-        img_size=img_size,
-        patch_size=14,
-        embed_dim=1536,
-        num_blocks=24,
-        num_heads=12,
-        **kwargs,
+    return AIM(
+        *_aim(
+            img_size=img_size,
+            patch_size=14,
+            embed_dim=1536,
+            num_blocks=24,
+            num_heads=12,
+            **kwargs,
+        )
     )
 
 
 def aim_1B(img_size: Union[int, Tuple[int, int]] = 224, **kwargs: Any) -> AIM:
-    return _aim(
-        img_size=img_size,
-        patch_size=14,
-        embed_dim=2048,
-        num_blocks=24,
-        num_heads=16,
-        **kwargs,
+    return AIM(
+        *_aim(
+            img_size=img_size,
+            patch_size=14,
+            embed_dim=2048,
+            num_blocks=24,
+            num_heads=16,
+            **kwargs,
+        )
     )
 
 
 def aim_3B(
     img_size: Union[int, Tuple[int, int]] = 224, patch_size: int = 14, **kwargs: Any
 ) -> AIM:
-    return _aim(
-        img_size=img_size,
-        patch_size=patch_size,
-        embed_dim=3072,
-        num_blocks=24,
-        num_heads=24,
-        **kwargs,
+    return AIM(
+        *_aim(
+            img_size=img_size,
+            patch_size=patch_size,
+            embed_dim=3072,
+            num_blocks=24,
+            num_heads=24,
+            **kwargs,
+        )
     )
 
 
 def aim_7B(
     img_size: Union[int, Tuple[int, int]] = 224, patch_size: int = 14, **kwargs: Any
 ) -> AIM:
-    return _aim(
-        img_size=img_size,
-        patch_size=patch_size,
-        embed_dim=4096,
-        num_blocks=32,
-        num_heads=32,
-        **kwargs,
+    return AIM(
+        *_aim(
+            img_size=img_size,
+            patch_size=patch_size,
+            embed_dim=4096,
+            num_blocks=32,
+            num_heads=32,
+            **kwargs,
+        )
     )
