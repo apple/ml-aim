@@ -174,56 +174,52 @@ def _aim(
 
 
 def aim_600M(img_size: Union[int, Tuple[int, int]] = 224, **kwargs: Any) -> AIM:
-    return AIM(
-        *_aim(
-            img_size=img_size,
-            patch_size=14,
-            embed_dim=1536,
-            num_blocks=24,
-            num_heads=12,
-            **kwargs,
-        )
+    preprocessor, trunk, head = _aim(
+        img_size=img_size,
+        patch_size=14,
+        embed_dim=1536,
+        num_blocks=24,
+        num_heads=12,
+        **kwargs,
     )
+    return AIM(preprocessor, trunk, head)
 
 
 def aim_1B(img_size: Union[int, Tuple[int, int]] = 224, **kwargs: Any) -> AIM:
-    return AIM(
-        *_aim(
-            img_size=img_size,
-            patch_size=14,
-            embed_dim=2048,
-            num_blocks=24,
-            num_heads=16,
-            **kwargs,
-        )
+    preprocessor, trunk, head = _aim(
+        img_size=img_size,
+        patch_size=14,
+        embed_dim=2048,
+        num_blocks=24,
+        num_heads=16,
+        **kwargs,
     )
+    return AIM(preprocessor, trunk, head)
 
 
 def aim_3B(
     img_size: Union[int, Tuple[int, int]] = 224, patch_size: int = 14, **kwargs: Any
 ) -> AIM:
-    return AIM(
-        *_aim(
-            img_size=img_size,
-            patch_size=patch_size,
-            embed_dim=3072,
-            num_blocks=24,
-            num_heads=24,
-            **kwargs,
-        )
+    preprocessor, trunk, head = _aim(
+        img_size=img_size,
+        patch_size=patch_size,
+        embed_dim=3072,
+        num_blocks=24,
+        num_heads=24,
+        **kwargs,
     )
+    return AIM(preprocessor, trunk, head)
 
 
 def aim_7B(
     img_size: Union[int, Tuple[int, int]] = 224, patch_size: int = 14, **kwargs: Any
 ) -> AIM:
-    return AIM(
-        *_aim(
-            img_size=img_size,
-            patch_size=patch_size,
-            embed_dim=4096,
-            num_blocks=32,
-            num_heads=32,
-            **kwargs,
-        )
+    preprocessor, trunk, head = _aim(
+        img_size=img_size,
+        patch_size=patch_size,
+        embed_dim=4096,
+        num_blocks=32,
+        num_heads=32,
+        **kwargs,
     )
+    return AIM(preprocessor, trunk, head)
