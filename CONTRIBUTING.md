@@ -17,7 +17,7 @@ We ask that all community members read and observe our [Code of Conduct](CODE_OF
 
 If you have any question about our work, we encourage you to submit a new
 [issue](https://github.com/apple/ml-aim/issues/new). If applicable, please try to include in your issue
-a minimal reproducible ex  example, such as a code snippet or a command that was run.
+a minimal reproducible example, such as a code snippet or a command that was run.
 
 ## Pull requests
 
