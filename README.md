@@ -38,7 +38,7 @@ model = load_pretrained("aim-600M-2B-imgs", backend="torch")
 transform = val_transforms()
 
 inp = transform(img).unsqueeze(0)
-logits, _ = model(inp)
+logits, features = model(inp)
 ```
 
 <details>
@@ -57,7 +57,7 @@ transform = val_transforms()
 
 inp = transform(img).unsqueeze(0)
 inp = mx.array(inp.numpy())
-logits, _ = model(inp)
+logits, features = model(inp)
 ```
 </details>
 
@@ -77,7 +77,7 @@ transform = val_transforms()
 
 inp = transform(img).unsqueeze(0)
 inp = jnp.array(inp)
-(logits, _), _ = model.apply(params, inp, mutable=['batch_stats'])
+(logits, features), _ = model.apply(params, inp, mutable=['batch_stats'])
 ```
 </details>
 
@@ -202,11 +202,11 @@ torchrun --standalone --nnodes=1 --nproc-per-node=8 main_attnprobe.py \
   --model=aim-7B \
   --batch-size=64 \
   --data-path=/path/to/imagenet \
-  --probe-layers=last \
+  --probe-layers=best \
   --backbone-ckpt-path=/path/to/backbone_ckpt.pth \
   --head-ckpt-path=/path/to/head_ckpt.pth
 ```
-By default, we probe the last 6 layers. To change this, simply pass `--probe-layers=best`.
+By default, we probe features from the intermediate 6 layers that provide the best performance. To change this, simply pass `--probe-layers=last`.
 
 ## Citation
 If you find our work useful, please consider citing us as:

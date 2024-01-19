@@ -176,7 +176,7 @@ def load_pretrained(
     backend: Literal["torch", "jax", "mlx"] = "torch",
     pretrained: bool = True,
     load_head: bool = True,
-    probe_layers: Literal["last", "best"] = "last",
+    probe_layers: Literal["last", "best"] = "best",
     backbone_ckpt_path: Optional[str] = None,
     head_ckpt_path: Optional[str] = None,
     strict: Optional[bool] = None,

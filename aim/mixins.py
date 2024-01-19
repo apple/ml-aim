@@ -18,18 +18,12 @@ class AIMMixin:
         x: ArrayLike,
         mask: Optional[ArrayLike] = None,
         max_block_id: Optional[int] = -1,
-    ) -> Tuple[ArrayLike, Dict[str, ArrayLike]]:
-        output = {}
-
+    ) -> Tuple[ArrayLike, ArrayLike]:
         x = self.preprocessor(x, mask=mask)
-        output["preprocessor_output"] = x
-
         x, feats = self.trunk(x, mask=mask, max_block_id=max_block_id)
-        output["trunk_output"] = feats
+        logits, descriptor = self.head(x, mask=mask)
 
-        x = self.head(x, mask=mask)
-
-        return x, output
+        return logits, descriptor
 
     def extract_features(
         self,
