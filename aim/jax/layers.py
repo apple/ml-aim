@@ -293,4 +293,4 @@ class AttentionPoolingClassifier(nn.Module):
         x_cls = x_cls.mean(axis=1)
 
         out = nn.Dense(self.out_features, name="linear")(x_cls)
-        return out
+        return out, x_cls

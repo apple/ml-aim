@@ -27,9 +27,9 @@ class AIMMixin:
         x, feats = self.trunk(x, mask=mask, max_block_id=max_block_id)
         output["trunk_output"] = feats
 
-        x = self.head(x, mask=mask)
+        logits, descriptor = self.head(x, mask=mask)
 
-        return x, output
+        return logits, descriptor
 
     def extract_features(
         self,

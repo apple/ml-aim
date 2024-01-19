@@ -314,4 +314,4 @@ class AttentionPoolingClassifier(nn.Module):
         x_cls = x_cls.mean(axis=1)
 
         out = self.linear(x_cls)
-        return out
+        return out, x_cls
