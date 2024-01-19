@@ -358,7 +358,7 @@ class AttentionPoolingClassifier(nn.Module):
 
         self.num_queries = num_queries
 
-    def forward(self, x: torch.Tensor, **_: Any) -> torch.Tensor:
+    def forward(self, x: torch.Tensor, **_: Any) -> Tuple[torch.Tensor, torch.Tensor]:
         B, N, C = x.shape
 
         x = self.bn(x.transpose(-2, -1)).transpose(-2, -1)

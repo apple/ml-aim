@@ -249,7 +249,7 @@ class AttentionPoolingClassifier(nn.Module):
     num_queries: int = 1
 
     @nn.compact
-    def __call__(self, x: jax.Array, **_: Any) -> jax.Array:
+    def __call__(self, x: jax.Array, **_: Any) -> Tuple[jax.Array, jax.Array]:
         B, N, C = x.shape
         head_dim = self.dim // self.num_heads
         scale = self.qk_scale or head_dim**-0.5

@@ -19,14 +19,9 @@ class AIMMixin:
         mask: Optional[ArrayLike] = None,
         max_block_id: Optional[int] = -1,
     ) -> Tuple[ArrayLike, Dict[str, ArrayLike]]:
-        output = {}
 
         x = self.preprocessor(x, mask=mask)
-        output["preprocessor_output"] = x
-
         x, feats = self.trunk(x, mask=mask, max_block_id=max_block_id)
-        output["trunk_output"] = feats
-
         logits, descriptor = self.head(x, mask=mask)
 
         return logits, descriptor

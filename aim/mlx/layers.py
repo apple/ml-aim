@@ -284,7 +284,7 @@ class AttentionPoolingClassifier(nn.Module):
 
         self.num_queries = num_queries
 
-    def __call__(self, x: mx.array, **_: Any) -> mx.array:
+    def __call__(self, x: mx.array, **_: Any) -> Tuple[mx.array, mx.array]:
         B, N, C = x.shape
 
         x = self.bn(x)
