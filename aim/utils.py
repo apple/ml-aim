@@ -203,7 +203,7 @@ def load_pretrained(
         return both the model and its state.
     """
 
-    def get_load_model_fn(arch: str) -> Callable[[...], Any]:
+    def get_load_model_fn(arch: str) -> Callable[..., Any]:
         if backend == "torch":
             from aim.torch import models
         elif backend == "jax":
@@ -221,7 +221,7 @@ def load_pretrained(
         }[arch]
 
     def load_state_dict(
-        loader: Callable[[str, ...], Dict[str, torch.Tensor]],
+        loader: Callable[..., Dict[str, torch.Tensor]],
         backbone_loc: str,
         head_loc: Optional[str],
     ) -> Dict[str, torch.Tensor]:
