@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project]
+name = "aim-v2"
+version = "1.0.0"
+description = "Multimodal Autoregressive Pre-training of Large Vision Encoders"
+requires-python = ">=3.9"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+authors = [{name = "Apple"}]
+dependencies = ["torch>=2.0.0", "huggingface_hub", "safetensors"]
+
+[project.optional-dependencies]
+test = ["pytest", "transformers", "flax", "mlx"]
