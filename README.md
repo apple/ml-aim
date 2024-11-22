@@ -1,6 +1,6 @@
 # Autoregressive Pre-training of Large Vision Encoders
 <div>
-<a href="#" target="_blank"><img alt="AIMv2 arXiv" src="https://img.shields.io/badge/arXiv-AIMv2-red?logo=arxiv"/></a>
+<a href="https://arxiv.org/abs/2411.14402" target="_blank"><img alt="AIMv2 arXiv" src="https://img.shields.io/badge/arXiv-AIMv2-red?logo=arxiv"/></a>
 <a href="#aimv2-model-gallery"><img alt="AIMv2 model gallery" src="https://img.shields.io/badge/model_gallery-AIMv2-blue"/></a>
 <a href="https://arxiv.org/abs/2401.08541" target="_blank"><img alt="AIMv1 arXiv" src="https://img.shields.io/badge/arXiv-AIMv1-red?logo=arxiv"/></a>
 <a href="aim-v1/README.md#pre-trained-backbones"> <img alt="AIMv1 model gallery" src="https://img.shields.io/badge/model_gallery-AIMv1-blue"/></a>
@@ -9,7 +9,7 @@
 This repository is the entry point for all things AIM, a family of autoregressive models that push the boundaries of
 visual and multimodal learning:
 
-- **AIMv2**: [`Multimodal Autoregressive Pre-training of Large Vision Encoders`]()  [[`BibTeX`](#citation)]
+- **AIMv2**: [`Multimodal Autoregressive Pre-training of Large Vision Encoders`](https://arxiv.org/abs/2411.14402)  [[`BibTeX`](#citation)]
   <br>
   Enrico Fini*, Mustafa Shukor*, Xiujun Li, Philipp Dufter, Michal Klein, David Haldimann, Sai Aitharaju,
   Victor Guilherme Turrisi da Costa, Louis Béthune, Zhe Gan, Alexander T Toshev, Marcin Eichner, Moin Nabi, Yinfei Yang,
@@ -398,11 +398,12 @@ If you find our work useful, please consider citing us as:
 
 ```bibtex
 @misc{fini2024multimodal,
-  title         = {Multimodal Autoregressive Pre-training of Large Vision Encoders},
-  author        = {Enrico Fini and Mustafa Shukor and Xiujun Li and Philipp Dufter and Michal Klein and David Haldimann and Sai Aitharaju and Victor Guilherme Turrisi da Costa and Louis Béthune and Zhe Gan and Alexander T Toshev and Marcin Eichner and Moin Nabi and Yinfei Yang and Joshua M. Susskind and Alaaeldin El-Nouby},
-  year          = {2024},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CV},
+    title={Multimodal Autoregressive Pre-training of Large Vision Encoders},
+    author={Enrico Fini and Mustafa Shukor and Xiujun Li and Philipp Dufter and Michal Klein and David Haldimann and Sai Aitharaju and Victor Guilherme Turrisi da Costa and Louis Béthune and Zhe Gan and Alexander T Toshev and Marcin Eichner and Moin Nabi and Yinfei Yang and Joshua M. Susskind and Alaaeldin El-Nouby},
+    year={2024},
+    eprint={2411.14402},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
 }
 ```
 
