@@ -9,12 +9,12 @@
 This repository is the entry point for all things AIM, a family of autoregressive models that push the boundaries of
 visual and multimodal learning:
 
-- **AIMv2**: [`Multimodal Autoregressive Pre-training of Large Vision Encoders`](https://arxiv.org/abs/2411.14402)  [[`BibTeX`](#citation)]
+- **AIMv2**: [`Multimodal Autoregressive Pre-training of Large Vision Encoders`](https://arxiv.org/abs/2411.14402)  [[`BibTeX`](#citation)] [**CVPR 2025 (Highlight)**]
   <br>
   Enrico Fini*, Mustafa Shukor*, Xiujun Li, Philipp Dufter, Michal Klein, David Haldimann, Sai Aitharaju,
   Victor Guilherme Turrisi da Costa, Louis Béthune, Zhe Gan, Alexander T Toshev, Marcin Eichner, Moin Nabi, Yinfei Yang,
   Joshua M. Susskind, and Alaaeldin El-Nouby*
-- **AIMv1**: [`Scalable Pre-training of Large Autoregressive Image Models`](https://arxiv.org/abs/2401.08541) [[`BibTeX`](#citation)]<br>
+- **AIMv1**: [`Scalable Pre-training of Large Autoregressive Image Models`](https://arxiv.org/abs/2401.08541) [[`BibTeX`](#citation)][**ICML 2024**]<br>
   Alaaeldin El-Nouby, Michal Klein, Shuangfei Zhai, Miguel Angel Bautista, Alexander Toshev, Vaishaal Shankar,
   Joshua M Susskind, Armand Joulin.
 
