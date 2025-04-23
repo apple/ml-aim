@@ -3,7 +3,7 @@
 *Alaaeldin El-Nouby, Michal Klein, Shuangfei Zhai, Miguel Angel Bautista, Alexander Toshev, Vaishaal Shankar,
 Joshua M Susskind, and Armand Joulin*
 
-To appear at ICML 2024
+ICML 2024
 
 [[`Paper`](https://arxiv.org/abs/2401.08541)]  [[`BibTex`](#citation)]
 
